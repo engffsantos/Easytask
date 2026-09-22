@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --bg-main: #eef8f9;
+    --text-main: #1e293b;
+    --card-bg: #ffffff;
+    --border-color: #e0f2f4;
+  }
+
+  .dark {
+    --bg-main: #0b1320;
+    --text-main: #f8fafc;
+    --card-bg: #132032;
+    --border-color: #1e334a;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    min-height: 100vh;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Modern Soft Shadow Inspired by Mobile UI Mockup */
+.modern-shadow {
+  box-shadow: 0 12px 32px -8px rgba(14, 165, 233, 0.12), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+}
+
+.dark .modern-shadow {
+  box-shadow: 0 14px 34px -8px rgba(0, 0, 0, 0.5), 0 4px 12px -2px rgba(2, 132, 199, 0.1);
+}
+
+.modern-glow {
+  box-shadow: 0 8px 24px -4px rgba(42, 208, 202, 0.4);
+}
+
+/* Custom Gradients from Mockup */
+.gradient-cyan-sky {
+  background: linear-gradient(135deg, #2ad0ca 0%, #01b9fe 100%);
+}
+
+.gradient-coral-orange {
+  background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+}
+
+.gradient-amber-orange {
+  background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
+}
+
+.gradient-mint-emerald {
+  background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+}
+
+.gradient-card-highlight {
+  background: linear-gradient(135deg, #2dd4bf 0%, #0284c7 100%);
+}
+
+/* Priority Backgrounds */
+.priority-alta-gradient {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+  color: #ffffff;
+}
+
+.priority-media-gradient {
+  background: linear-gradient(135deg, #2ad0ca 0%, #01b9fe 100%);
+  color: #ffffff;
+}
+
+.priority-baixa-gradient {
+  background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+  color: #ffffff;
+}
+
+/* Scrollbar styling for horizontal pill filters */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Animations */
+@keyframes checkmarkPop {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes floatSoft {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes slideDownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-checkmark {
+  animation: checkmarkPop 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.animate-float {
+  animation: floatSoft 3s ease-in-out infinite;
+}
+
+.animate-slide-down {
+  animation: slideDownFade 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes weatherPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-weather-pop {
+  animation: weatherPop 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.weather-badge-gradient {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
+  backdrop-filter: blur(4px);
+}

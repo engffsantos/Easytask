@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "entities": {
+    "tarefa": {
+      "title": "Tarefa",
+      "description": "Registro de atividade ou tarefa privada do usuário no EasyTask",
+      "type": "object",
+      "properties": {
+        "titulo": {
+          "type": "string",
+          "description": "Título ou nome da tarefa",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "descricao": {
+          "type": "string",
+          "description": "Detalhes opcionais ou observações sobre a tarefa",
+          "maxLength": 500
+        },
+        "prioridade": {
+          "type": "string",
+          "description": "Nível de prioridade da tarefa",
+          "enum": ["baixa", "media", "alta"]
+        },
+        "categoria": {
+          "type": "string",
+          "description": "Categoria ou etiqueta da tarefa",
+          "maxLength": 30
+        },
+        "dataLimite": {
+          "type": "string",
+          "description": "Data limite no formato AAAA-MM-DD",
+          "maxLength": 10
+        },
+        "status": {
+          "type": "string",
+          "description": "Status da tarefa: pendente ou concluida",
+          "enum": ["pendente", "concluida"]
+        },
+        "subtarefas": {
+          "type": "array",
+          "description": "Lista de subtarefas geradas com IA ou cadastradas pelo usuário",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "titulo": { "type": "string", "maxLength": 150 },
+              "concluida": { "type": "boolean" }
+            },
+            "required": ["id", "titulo", "concluida"]
+          }
+        },
+        "userId": {
+          "type": "string",
+          "description": "ID do usuário proprietário da tarefa (Firebase Auth UID)"
+        },
+        "criadoEm": {
+          "type": "number",
+          "description": "Timestamp de criação em milissegundos"
+        }
+      },
+      "required": ["titulo", "prioridade", "status", "userId", "criadoEm"]
+    }
+  },
+  "firestore": {
+    "collections": {
+      "tarefas": {
+        "entity": "tarefa",
+        "description": "Coleção principal de tarefas privadas do EasyTask com isolamento por usuário",
+        "path": "/tarefas/{tarefaId}"
+      }
+    }
+  }
+}

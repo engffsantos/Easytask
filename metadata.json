@@ -1,0 +1,6 @@
+{
+  "name": "EasyTask",
+  "description": "Aplicativo simples e moderno para cadastro e gerenciamento de tarefas pessoais com prioridades.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
